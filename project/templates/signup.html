@@ -1,0 +1,173 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+ 
+
+<div id="register-container">
+    <form id="demo-form" method="POST" action="/signup">
+        <div style="text-align: center;">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+            <h1>Registrering</h1>
+            <p>Vennligst fyll inn skjemaet for å skape bruker.</p>
+            <hr>
+        </div>
+        <div class="register-container">
+            <div class="register-row">
+                <div class="register-input">
+                <label for="fornavn"><b>Fornavn</b></label>
+                <input type="text" placeholder="Fornavn" maxlength="14" name="fornavn" id="fornavn" required>
+                </div>
+                <div class="register-input">
+                <label for="etternavn"><b>Etternavn</b></label>
+                <input type="text" placeholder="Etternavn" maxlength="12" name="etternavn" id="etternavn" required>
+                </div>
+            </div>
+            <div class="register-row">
+                <div class="register-input">
+                <label for="email"><b>Email</b></label>
+                <input type="email" placeholder="Email@hotmail.no" maxlength="24" name="email" id="email" required>
+                </div>
+                <div class="register-input">
+                <label for="postAddresse"><b>Adresse</b></label>
+                <input type="text" placeholder="Stavangerveien 3" maxlength="16" name="postAddresse" id="postAddresse" required>
+                </div>
+            </div>
+            <div class="register-row">
+                <div class="register-input">
+                <label for="postKode"><b>Post adresse</b></label>
+                <input type="text" placeholder="Post adresse" maxlength="4" name="postKode" id="postKode" required>
+                </div>
+                <div class="register-input">
+                <label for="fylke"><b>Fylke</b></label>
+                <input type="text" placeholder="Rogaland" maxlength="16" name="fylke" id="fylke" required>
+                </div>
+            </div>
+            <div class="register-row">
+                <div class="register-input"> 
+                <label for="kjonn"><b>Kjønn</b></label>
+                <select class="select">
+                    <option value="Mann">Mann</option>
+                    <option value="Kvinne">Kvinne</option>
+                    <option value="Annet">Annet</option>
+                </select>
+                </div>
+                <div class="register-input">
+                <label for="fodselsdato"><b>Fødselsdato</b></label>
+                <input type="date" min="1945-09-01" max="2001-12-31" name="Fodselsdato" id="Fodselsdato" required>
+                </div>
+            </div>
+            <div class="register-row">
+                <div class="register-input">
+                    <label for="psw"><b>Passord</b></label>
+                    <input type="password" placeholder="Skriv Passord" name="psw" id="psw" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+                </div>
+                <div class="register-input">
+                    <label for="psw-repeat"><b>Gjenta Passord</b></label>
+                    <input type="password" placeholder="Gjenta Passord" name="psw-repeat" id="psw-repeat">
+                </div>
+            </div>
+        </div> 
+        <div style="text-align: center;">
+            <hr>
+            <p>Ved å skape en bruker, så godtar du våre <a href="#">brukervilkår</a>.</p>
+            <input type="checkbox" id="Husk-meg" name="Husk-meg" value="Husk-meg">
+            <label for="Husk-meg"> Hold meg innlogget</label>
+            <button class="registerbtn" >Registrer</button>
+            <div class="g-recaptcha" data-sitekey="{{sitekey}}" data-theme="dark"></div>
+        </div>
+    </form> 
+</div>
+
+<div id="message">
+    <div class="Requirements"><h4>Passordet må best av:</h4></div>
+        <p id="letter" class="invalid">Minst <b>en liten</b> bokstav</p>
+        <p id="capital" class="invalid">Minst <b>en stor</b> bokstav</p>
+        <p id="number" class="invalid">Minst <b>ett tall</b></p>
+        <p id="length" class="invalid">Minst <b>8 tegn</b></p>
+        <p id="special" class="invalid">Minst <b>1 spesialltegn</b></p>
+</div>
+
+    <script>
+
+        //Definerer variable for requirement display
+        var pasInput = document.getElementById("psw");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+        var special = document.getElementById("special");
+    
+        //Kravene vises når brukeren trykker inni passordfeltet
+        pasInput.onfocus = function() {
+            document.getElementById("message").style.display = "block";
+        }
+    
+        // Skjule kravene igjen når brukeren trykker utenfor passordfeltet
+        pasInput.onblur = function() {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // Når brukeren skriver, sjekk kravene:
+        pasInput.onkeyup = function() {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if(pasInput.value.match(lowerCaseLetters)) {  
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+            
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if(pasInput.value.match(upperCaseLetters)) {  
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if(pasInput.value.match(numbers)) {  
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+            
+            // Validate length
+            if(pasInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+
+            // Validate special case letter
+            var specialCaseLetters = /[$@$!%.,;:()*#?&]/g;
+            if(pasInput.value.match(specialCaseLetters)) {  
+                special.classList.remove("invalid");
+                special.classList.add("valid");
+            } else {
+                special.classList.remove("valid");
+                special.classList.add("invalid");
+            }
+            }
+    
+    </script>
+    
+    
+{% endblock %}

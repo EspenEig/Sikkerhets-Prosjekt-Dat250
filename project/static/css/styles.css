@@ -1,0 +1,774 @@
+/* main layout for nettside */
+/*Bannan manenn */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+header{
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #324154;
+    width: 100%;
+    z-index: 50; /*høy*/
+}
+
+main{
+    padding-bottom: 150px;
+    /*
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    */
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin:0;
+}
+
+footer{
+    color: black;
+    height: 120px;
+    z-index: 40; /* nokså høy*/
+    text-align: center;
+    background-color: #ecf2f7 ;
+    padding-top: 5px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+footer a{
+    color: black;
+}
+.nav-logo{
+    margin: -30px;
+    text-align: center;
+}
+.nav-logo-BB{
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    margin-left: -50px;
+}
+.nav-logo-BB img{
+    width: 100px;
+}
+
+.nav-logo-LoggUt{
+    margin-top: -17px;
+}
+
+.logout-btn {
+    text-transform: uppercase;
+    font-family: 'Calibri', sans-serif;
+    background: #324154;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 1rem;
+    border: 2px solid;
+    transition: all 0.5s;
+    border-radius: 10px;
+    width: auto;
+    position: relative;
+    min-width: 100px;
+  }
+
+  .logout-btn:hover {
+    background: #424d5e;
+    color: white;
+    border-color: white;
+    transition: all 0.5s;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px #b2c0d2;
+    opacity: 1;
+  }
+  .logout-btn:hover::after {
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
+/* Konto siden*/
+.tabell-scroll{
+    max-height: 400px;
+    overflow: auto;
+}
+#konto-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.konto-overskrift{
+    text-align: center;
+    border-color: white white #324154 white;
+    border-style: solid;  
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.konto-tabell{
+    margin-top: 50px;
+}
+.transaksjoner{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    table-layout: fixed;
+}
+.transaksjoner td{
+    padding: 8px;
+}
+.transaksjoner tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.transaksjoner th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #324154;
+    border: none;
+    
+}
+.transaksjoner th a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.saldo-visning{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    table-layout: fixed;
+}
+.saldo-visning tr{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #50698a;
+    color: white;    
+}
+.saldo-visning td{
+    padding: 8px;
+}
+/* Background styles */
+
+html,body{
+    min-height: 50%;
+    margin: 0;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    margin: 0;
+    margin-top: 80px;
+    padding: 0;
+}
+
+.Background{
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 150px;
+}
+
+.bakgrunnsbilde img{
+    height: 100%;
+    width: 100%;
+    opacity: 0.85;
+    position: fixed;
+    background-size: contain;
+}
+
+#background-image img{
+    opacity: 0.5;
+}
+
+/* Master styles */
+.sub-container{
+    position: relative;
+    z-index: 2;
+    max-width: 50%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+
+.nav-wrapper{
+    display:flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.left-side{
+    display:flex;
+
+}
+
+
+
+
+/*
+login - siden
+*/
+
+#login-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin:0;
+}
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 40%;
+}
+#login-container form{
+    min-width: 70%;
+}
+#login-input{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+
+
+
+
+
+/*Registrer-siden
+https://www.w3schools.com/howto/howto_css_register_form.asp
+*/
+
+#register-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin:0;
+}
+.register-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.register-row{
+    display: flex;
+    flex-direction:row ;
+    justify-content: space-between;
+}
+#register-container form{
+    min-width: 70%;
+}
+.register-input{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+
+/* Add padding to containers */
+.signin {
+    padding: 15px;
+  }
+  
+  /* Full-width input fields */
+  input[type=text], input[type=select], input[type=date], input[type=password], input[type=email] {
+    padding: 15px 15px;
+    margin: 5px 10px 22px 10px;
+    display: inline-block;
+    border: none;
+    background: #edf2f7;
+    border-radius: 10px;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    background-color: #edf2f7;
+    outline: none;
+  }
+
+  /* Overwrite default styles of hr */
+  hr {
+    border-color: white white #324154 white;
+    border-style: solid;
+    margin-bottom: 25px;
+    width: 100%;
+  }
+  
+  /* Set a style for the submit/register button */
+  .registerbtn {
+    background-color: #324154;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    opacity:1;
+  }
+  
+  /* Add a blue text color to links */
+  #register-container a {
+    color: dodgerblue;
+  }
+  
+  /* Set a grey background color and center the text of the "sign in" section */
+  .signin {
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+
+
+ /* PROFIL-SIDEN */
+
+ #profil-container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+#profil-container h1{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.4em;
+    color: #324154;
+    border-color: white white #324154 white;
+    border-style: solid;
+    /* color: rgb(37, 37, 37); */
+    text-align: center;
+    margin-top: 100px;
+    height: 50px;
+    justify-content: space-between;
+}
+.profil-bilde{
+    font-size: 2em;
+    text-align: center;
+}
+.profil-bilde img{
+    width: 200px;
+    border-radius: 200px;
+}
+
+.profil-venstre{
+    margin-top: 8rem;
+}
+.profil-høyre{
+    width: 60%;
+}
+.settings-icon{
+    color: black;
+    text-decoration: none;
+}
+
+
+/* White registry box */
+.Registry-box{
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+}
+
+
+/* button box and properties */
+
+.button-box{
+
+    width: 240px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 0px #69788b;
+    border-radius: 30px;
+}
+
+.Actual-button{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+
+.DnBlogo{
+    margin: 30px auto;
+    text-align: center;
+}
+
+.DnBlogo img{
+    width: 100px;
+    margin: 0 12px;
+    box-shadow: 0 0 20px 0 #7f7f7f3d;
+    cursor: pointer;
+    border-radius: 30%;
+}
+
+
+#btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 130px;
+    height: 100%;
+    background: linear-gradient(to right, #324154,#ecf2f7);
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.input-group{
+    top: 180px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.submit-button{
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #324154,#ecf2f7);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+
+.check-box{
+    margin: 30px 10px 30px 0;
+}
+
+span{
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+}
+
+#login{
+    left: 50px;
+}
+
+#register{
+    left: 450px;
+} 
+
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    width: 200px;
+    height: 250px;
+    display:none;
+    background-color: #fff;
+    position: relative;
+    top: -350px;
+    right: 50px;
+    padding: 5px;
+    margin: .5% auto;
+    
+  }
+#message p {
+    padding: 10px 35px;
+    font-size: 10px;
+  }
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+  }
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+  }
+  
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+  }
+  
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+  }
+
+/*Requirement text properties */
+.Requirements{
+    color: black;
+}
+
+/* Nav styles */
+
+.nav-wrapper > .right-side > div {
+    margin-left: 20px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+.nav-wrapper > .left-side > div {
+    margin-right: 20px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.nav-link-wrapper{
+    height: 22px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+}
+
+.nav-link-wrapper a{
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.nav-link-wrapper:hover {
+    border-bottom: 1px solid black;
+}
+
+.nav-link-wrapper a:hover {
+    color: grey;
+}
+
+/* OVERSIKT */
+
+.oversikt-container {
+    display: flex;
+    border-color: white white #324154 white;
+    border-style: solid;
+    color: rgb(37, 37, 37);
+    margin-top: 100px;
+    height: 50px;
+    width: 250px;
+}
+
+.oversikt-container i {
+    padding-right: 5px;
+}
+
+.info-container {
+    background: white;
+    border-color: white white #324154 white;
+    border-style: solid;
+    border-width: .01em;
+}
+
+.info-container a{
+    color: black;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+
+.oversikt-container i {
+    color: #324154;
+    position: relative;
+    top: 4px;
+}
+
+.oversikt-container h1 {
+    font-size: 1.4em;
+    color: #324154;
+}
+
+.info-container h2 {
+    font-size: 1.1em;
+    color: rgb(75, 74, 74);
+}
+
+.info-container h3 {
+    margin-left: 40px;
+    margin-top: -10px;
+    font-size: .9em;
+    color: rgb(127, 137, 146);
+}
+
+.fa-chevron-right {
+    color: #324154;
+    position: relative;
+    left: 225px;
+    top: 15px;
+}
+
+.fa-plus-circle {
+    padding-right: 10px;
+    margin-left: 12px;
+}
+
+/* BETALING */
+
+.oversikt-container .fa-money-check {
+    font-size: 20px;
+    position: relative;
+    padding-top: 7px;
+    top: 0px;
+}
+
+.oversikt-container .fa-exchange-alt {
+    font-size: 20px;
+    position: relative;
+    padding-top: 7px;
+    top: 0px;
+}
+
+.info-container select {
+    border: #324154;
+    border: thin;
+    border-style: solid;
+    margin-top: -8px;
+}
+
+.info-container input[type=psum] {
+    height: 25px;
+    position: relative;
+    width: 135px;
+    left: 75px;
+}
+
+.info-container input[type=kontonr] {
+    height: 25px;
+    position: relative;
+    width: 135px;
+    left: 44px;
+}
+
+.info-container input[type=mld] {
+    height: 25px;
+    position: relative;
+    width: 135px;
+    left: 49px;
+}
+
+.button-container button {
+    background-color: #324154;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.suppaccordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .suppaccordion:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the accordion panel. Note: hidden by default */
+.supppanel {
+    padding: 0 18px;
+    background-color: white;
+    border-bottom: #50698a 2px solid;
+    padding-bottom: 10px;
+  }
+
+/* Style inputs with type="text", select elements and textareas */
+.sub-container input[type=text], select, textarea {
+    text-align: center;
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+
+  /* Style the submit button with a specific background color etc */
+.sub-container input[type=submit] {
+    background-color: #324154;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #kategori {
+      margin-left: 50%;
+  }
+  /* When moving the mouse over the submit button, add a darker green color */
+.sub-container input[type=submit]:hover {
+    background-color: #262d36;
+  }
+  /* Add a background color and some padding around the form */
+#suppinput {
+      margin-left: 25%;
+      text-align: center;
+  }
+#suppinput h1 {
+    border-bottom: #50698a 2px solid;
+    padding-bottom: 40px;
+}
+#overskriftsub{
+    border-bottom: #50698a 2px solid;
+    padding-bottom: 40px;
+}
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+
+select {
+    color: #8E8E8E;
+    background-color: #edf2f7;
+    margin: 5px 5px 22px 10px;
+    padding: 15px;
+    width: 95%;
+    border-radius: 10px;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+.title{
+    text-align: center;
+}
+.subtitle{
+    text-align: center;
+}

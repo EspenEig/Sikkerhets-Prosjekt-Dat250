@@ -1,0 +1,47 @@
+<!-- templates/login.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<div id="register-container">
+    
+    <div class="register-container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <h1>Logg inn</h1>
+        <hr>
+        <form method="POST" action="/signin" >
+            <div class="register-row">
+                <div class="register-input">
+                    <label for="email"><b>Email</b></label>
+                    <input class="input is-large" type="text" name="email" placeholder="email" autofocus="">
+                </div>
+
+                <div class="register-input">
+                    <label for="password"><b>Passord</b></label>
+                    <input class="input is-large" type="password" name="password" placeholder="password">
+                </div>
+            </div>
+                <label class="checkbox">
+                    <input type="checkbox">
+                    Husk meg
+                </label>
+            
+            <button class="registerbtn">Logg inn</button>
+            <div class="g-recaptcha" data-sitekey="{{sitekey}}" data-theme="dark" ></div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

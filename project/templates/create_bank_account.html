@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="container">
+    <!-- -->
+    <div class="sub-container">
+        <div class="oversikt-container">
+            <h1><i class='fas fa-plus-circle'></i>Opprett konto</h1>
+        </div>
+        <!-- -->
+        <form method="POST">
+            <div class="info-container">
+                <label for="kontoer"><h2>Kontotype</h2></label>
+                <select name="kontotype" id="kontotype">
+                    <option value="bruk">Brukskonto</option>
+                    <option value="spar">Sparekonto</option>
+                </select>
+            </div>
+            <!-- -->
+            <div class="info-container">
+                <label for="knavn"><h2>Navn <input type="knavn" id="knavn" name="kontonavn" maxlength="16" placeholder="Skriv inn navn"></h2></label>
+            </div>
+            <!-- -->
+            <div class="button-container">
+                <button type="submit">OPPRETT</button>
+            </div>
+        </form>
+    </div>
+    <!-- -->
+</div>
+{% endblock content %}

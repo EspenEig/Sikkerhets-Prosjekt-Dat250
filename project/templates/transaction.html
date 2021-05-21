@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+</div>
+<div id="container">
+    <!-- -->
+    <div class="sub-container">
+        <div class="oversikt-container">
+            <h1><i class="fas fa-exchange-alt"></i>OVERFØRE</h1>
+        </div>
+        <!-- -->
+        <form method="POST">
+            <div class="info-container">
+                <label for="fra_konto"><h2>Fra konto</h2></label>
+                <select name="fra_konto" id="fra_konto">
+                    <option value="velg" selected> Velg konto </option>
+                    {% for konto in bruker_kontoer %}
+                    {% if konto.kontotype != "lån" %}
+                    <option value="{{ konto.kontonr }}"> {{ konto.navn }}: {{ konto.__str__() }} kr</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- -->
+            <div class="info-container">
+                <label for="til_konto"><h2>Til konto</h2></label>
+                <select name="til_konto" id="til_konto">
+                    <option value="velg" selected> Velg konto </option>
+                    {% for konto in bruker_kontoer %}
+                    {% if konto.kontotype != "lån" %}
+                    <option value="{{ konto.kontonr }}">{{ konto.navn }}: {{ konto.__str__() }} kr</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- -->
+            <div class="info-container">
+                <label for="psum"><h2>Sum<input type="psum" id="psum" name="pengesum" maxlength="8" placeholder="kr"></h2></label>
+            </div>
+            <!-- -->
+            <div class="button-container">
+                <button type="submit" name="btn" value="overfør">OVERFØR</button>
+            </div>
+        </form>
+    </div>
+    <!-- -->
+    <div class="sub-container">
+        <div class="oversikt-container">
+            <h1><i class="fas fa-money-check"></i>BETALE</h1>
+        </div>
+        <!-- -->
+        <form method="POST">
+            <div class="info-container">
+                <label for="avsender_konto" id ="ddl"><h2>Fra konto</h2></label>
+                <select name="avsender_konto" id="avsender_konto">
+                    <option value="velg" selected> Velg konto </option>
+                    {% for konto in bruker_kontoer %}
+                    {% if konto.kontotype == "bruk" %}
+                    <option value="{{ konto.kontonr }}"> {{ konto.navn }}: {{ konto.__str__() }} kr</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- -->
+            <div class="info-container">
+                <label for="mottaker_konto"><h2>Til konto</h2></label>
+                <select name="mottaker_konto" id="mottaker_konto">
+                    <option value="velg" selected> Velg konto </option>
+                    {% for konto in andre_kontoer.keys() %}
+                    {% if konto.kontotype != "lån" %}
+                    <option value="{{ konto.kontonr }}"> {{ andre_kontoer[konto] }} ({{ konto.kontonr }})</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- -->
+            <div class="info-container">
+                <label for="psum"><h2>Sum<input type="psum" id="psum" name="pengesum" maxlength="8" placeholder="kr"></h2></label>
+            </div>
+            <!-- -->
+            <div class="button-container">
+                <button type="submit" name="btn" value="betal">BETAL</button>
+            </div>
+        </form>
+    </div>
+    <!-- -->
+</div>
+{% endblock content %}

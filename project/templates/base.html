@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Brosjanbank</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="left-side">
+                        {% if current_user.is_authenticated and current_user.is_active %}
+                        <div class="nav-link-wrapper">
+                            <a href="{{ url_for('admin.index') }}">admin</a>
+                        </div>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        <div class="nav-link-wrapper">
+                            <a href="{{ url_for('main.profile') }}" >Profil</a>
+                        </div>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        <div class="nav-link-wrapper">
+                            <a href="{{ url_for('main.overview') }}" >Oversikt</a>
+                        </div>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        <div class="nav-link-wrapper">
+                            <a href="{{ url_for('main.transaction') }}" >Betaling</a>
+                        </div>
+                        {% endif %}
+                        {% if current_user.is_authenticated %}
+                        {% for bruker in brukere %}
+                            {% if brukere.admin == "True" %}
+                                <div class="nav-link-wrapper">
+                                    <a href="{{ url_for('main.transaction') }}" >Betaling</a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% if not current_user.is_authenticated %}
+                        <div class="nav-link-wrapper">   
+                            <a href="{{ url_for('auth.signin') }}" >Logg inn</a>
+                        </div>
+                        {% endif %}
+                        {% if not current_user.is_authenticated %}
+                        <div class="nav-link-wrapper">
+                            <a href="{{ url_for('auth.signup') }}" >Registrer</a>
+                        </div>
+                        {% endif %} 
+                        
+                    <div class="mid-side">
+                        <div class="nav-logo-BB">
+                            <a href="{{ url_for('main.index') }}"><img src="/static/images/LOGO-med-skygge-morkere.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="nav-logo-LoggUt">
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('auth.logout') }}"><button class="logout-btn">Logg ut</button></a>
+                        {% endif %}    
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <!-- Kontaktinformasjonen til banken -->
+            <p> Kontakt oss: <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" target="_top">BrusjanBank@gmail.com</a></p>
+            <p> Eller ring oss på tlf: 12345678 </p>
+            <p> For mer hjelp, trykk inn <a href="{{ url_for('main.support') }}">HER</a>.</p>
+    
+    </footer>
+    </body>
+    </html>

@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+</div>
+<div id="konto-container">
+    <!-- Overskrift -->
+    <div class="konto-overskrift">
+        <div>
+            <h1>Transaksjons Rapport</h1>
+        </div>
+        {% if konto.kontotype != "lån" %}
+        <div>
+            <h4>Viser transaksjoner for konto: {{ konto.navn }} <br/> Kontonummer: {{ konto.kontonr }} </h4>
+        </div>
+        <div class="button-container">
+            <a href="{{url_for('main.delete_bank_account', kontonr=konto.kontonr)}}">
+                <button type="submit" name="btn" value="overfør">Slett konto</button>
+            </a>
+        </div>
+        {% else %}
+        <div>
+            <h4>Viser transaksjoner for lån: {{ konto.navn }} </h4>
+        </div>
+        <div class="button-container">
+                <button type="submit" onclick="nedbetal()">Nedbetal lån</button>
+        </div>
+    </div>
+    <form method="POST">
+        <div class="sub-container" id="hiddenDIV" style="display: none;">
+                <div class="info-container">
+                    <label for="fra_konto"><h2>Fra konto</h2> </label>
+                    <select name="fra_konto" id="fra_konto">
+                        {% for konto in brukskontoer %}
+                        <option value="{{ konto.kontonr }}"> {{ konto.navn }}: {{ konto.__str__() }} kr</option>
+                        {% endfor %}
+                    </select>
+                    <label for="psum"><h2>Sum<input type="psum" id="psum" name="pengesum" placeholder="kr"></h2></label>
+                    <div class="button-container">
+                        <button type="submit" name="btn" value="nedbetal">NEDBETAL</button>
+                    </div>
+                </div>
+        </div>
+    </form>
+    {% endif %}
+    <!-- Tabell for transaksjonene -->
+    <div class="konto-tabell">
+        <table class="transaksjoner">
+            <!-- Kunne trykke på th og sortere -->
+            <tr>
+                <th style="color: white;">Konto </th>
+                <th style="color: white;">Transaksjons Type</th>
+                <th style="color: white;">Dato</th>
+                <th style="color: white;">Mengde</th>
+                <th style="color: white;">Saldo</th>
+            </tr>
+        </table>
+        <div class="tabell-scroll">
+        <table class="transaksjoner">
+            {% for transaksjon in transaksjoner %}
+            {% if transaksjon.avsender == konto.kontonr %}
+            <tr>
+                <td>{{ transaksjon.mottaker }}</td>
+                <td> {{ transaksjon.trans_type }}</td>
+                <td> {{ transaksjon.tidspunkt }}</td>
+                <td> -{{ transaksjon.__str__() }} kr</td>
+                <td> {{ saldoer[transaksjon] }} kr</td>
+            </tr>
+            {% endif %}
+            {% if transaksjon.mottaker == konto.kontonr %}
+            <tr>
+                <td>{{ transaksjon.avsender }}</td>
+                <td> {{ transaksjon.trans_type }}</td>
+                <td> {{ transaksjon.tidspunkt }}</td>
+                <td> +{{ transaksjon.__str__() }} kr</td>
+                <td> {{ saldoer[transaksjon] }} kr</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+            <table class="saldo-visning">
+                <tr>
+                    <td colspan="3"></td>
+                    <td>Saldo</td>
+                    <td>{{ konto.__str__() }} kr</td>
+                </tr>
+            </table>
+        
+    </div>
+</div>
+<script>
+
+function nedbetal() {
+    var x = document.getElementById("hiddenDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
+
+{% endblock content %}

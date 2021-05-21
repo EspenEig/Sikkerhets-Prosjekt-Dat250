@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <main>
+        <div id="container">
+            <div class="sub-container"> 
+                <div id="suppinput">
+                <h1>Ofte stilte spørsmål</h1>
+                <h3>Q. Hvor er pengene mine?</h3>
+                    <div class="supppanel">
+                    <p>A. Overføring skal skje momentant, ta kontakt med oss på mail for raskt svar </p>
+                    </div>
+                    <h3>Q. Glemt passord?</h3>
+                    <div class="supppanel">
+                    <p>A. Hvis du har glemt passord er vi nødt til å snakke med deg, kontakt oss.</p>
+                    </div>
+
+                    <h3>Q. Hva er det meste jeg kan låne?</h3>
+                    <div class="supppanel">
+                    <p>A. Det meste du har lov å låne er 5.000.000kr</p>
+                    </div>
+                <img src="../static/images/suppbilde.png" alt="" width="300" height="300">
+            </div>
+            </div>
+                <div class="sub-container">
+                    <div id="suppinput">
+                    <h1 style="text-align: center;">Hjelp og Kundeservice</h1>
+                    
+                        <form method="POST" action="mailto:someone@example.com">
+                    
+                        <label for="name">Email</label>
+                        <input type="text" id="email" name="email" placeholder="Mail adressen din">
+                    
+                        <label for="Kategori">Kategori</label>
+                        <select id="Kategori" name="Kategori">
+                            <option value="Overføring">Overføring</option>
+                            <option value="Login">Login</option>
+                            <option value="Lån">Lån</option>
+                            <option value="Konto">Konto</option>
+                        </select>
+                    
+                        <label for="subject">Emne</label>
+                        <textarea id="subject" name="subject" placeholder="Hva kan vi hjelpe med?" style="height:200px"></textarea>
+                    
+                        <input type="submit" value="">
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <script>
+            var acc = document.getElementsByClassName("suppaccordion");
+            var i;
+            
+            for (i = 0; i < acc.length; i++) {
+              acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                  panel.style.display = "none";
+                } else {
+                  panel.style.display = "block";
+                }
+              });
+            }
+        </script>
+    </main>
+    {% endblock content %}

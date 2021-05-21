@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center;">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+</div>
+<div id="container">
+    <!-- -->
+    <div class="sub-container">
+        <div class="oversikt-container">
+            <h1><i class="material-icons">payment</i>DAGLIG BRUK</h1>
+        </div>
+        <!-- -->
+        {% for konto in kontoer %}
+        {% if konto.kontotype == "bruk" %}
+                <div class="info-container">
+                    <a href="{{url_for('main.account', kontonr=konto.kontonr)}}">
+                        <h2><i class='fas fa-chevron-right'></i>{{ konto.navn }}</h2>
+                        <h3>{{ konto.__str__() }} kr</h3>
+                    </a>
+                </div>
+        {% endif %}
+        {% endfor %}
+        <!-- -->
+        <div class="info-container">
+            <a href="{{url_for('main.create_bank_account')}}">
+                <h2><i class='fas fa-plus-circle'></i>Opprett konto</h2>
+            </a>
+        </div>
+    </div>
+    <!-- -->
+    <div class="sub-container">
+        <div class="oversikt-container">
+            <h1><i class="material-icons">account_balance</i>MIN SPARING</h1>
+        </div>
+        <!-- -->
+        {% for konto in kontoer %}
+        {% if konto.kontotype == "spar" %}
+                <div class="info-container">
+                    <a href="{{url_for('main.account', kontonr=konto.kontonr)}}">
+                        <h2><i class='fas fa-chevron-right'></i>{{ konto.navn }}</h2>
+                        <h3>{{ konto.__str__() }} kr</h3>
+                    </a>
+                </div>
+        {% endif %}
+        {% endfor %}
+        <!-- -->
+        <div class="info-container">
+            <a href="{{url_for('main.create_bank_account')}}">
+                <h2><i class='fas fa-plus-circle'></i>Opprett sparekonto</h2>
+            </a>
+        </div>
+    </div>
+
+    <!-- -->
+    <div class="sub-container">
+        <div class="oversikt-container">
+            <h1><i class="material-icons">assessment</i>MINE LÅN</h1>
+        </div>
+        <!-- -->
+        {% for konto in kontoer %}
+        {% if konto.kontotype == "lån" %}
+                <div class="info-container">
+                    <a href="{{url_for('main.account', kontonr=konto.kontonr)}}">
+                        <h2><i class='fas fa-chevron-right'></i>{{ konto.navn }}</h2>
+                        <h3>{{ konto.__str__() }} kr</h3>
+                    </a>
+                </div>
+        {% endif %}
+        {% endfor %}
+        <!-- -->
+        <div class="info-container">
+            <a href="{{url_for('main.create_loan')}}">
+                <h2><i class='fas fa-plus-circle'></i>Opprett låneavtale</h2>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
